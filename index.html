@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>My Dashboard</title>
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <!-- ===== HEADER ===== -->
+    <header class="header">
+      <div class="header__left">
+        <span id="date-display" class="header__date"></span>
+      </div>
+      <div class="header__right">
+        <button id="theme-toggle" class="btn btn--icon" aria-label="Toggle dark mode">
+          <span class="icon-sun">☀️</span>
+          <span class="icon-moon">🌙</span>
+        </button>
+      </div>
+    </header>
+
+    <!-- ===== MAIN ===== -->
+    <main class="main">
+
+      <!-- === GREETING SECTION === -->
+      <section class="section greeting-section">
+        <div class="greeting__time" id="time-display"></div>
+        <h1 class="greeting__text" id="greeting-text">Good morning!</h1>
+
+        <!-- Custom name input -->
+        <div class="greeting__name-row">
+          <span id="name-display" class="greeting__name"></span>
+          <button id="edit-name-btn" class="btn btn--ghost btn--sm" aria-label="Edit name">✏️ Edit name</button>
+        </div>
+
+        <!-- Name modal -->
+        <div id="name-modal" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+          <div class="modal__backdrop"></div>
+          <div class="modal__box">
+            <h2 class="modal__title" id="modal-title">What's your name?</h2>
+            <input
+              type="text"
+              id="name-input"
+              class="input"
+              placeholder="Enter your name..."
+              maxlength="40"
+              autocomplete="off"
+            />
+            <div class="modal__actions">
+              <button id="save-name-btn" class="btn btn--primary">Save</button>
+              <button id="cancel-name-btn" class="btn btn--ghost">Cancel</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- === DASHBOARD GRID === -->
+      <div class="dashboard-grid">
+
+        <!-- === FOCUS TIMER === -->
+        <section class="section card timer-card">
+          <h2 class="card__title">🍅 Focus Timer</h2>
+
+          <!-- Custom duration -->
+          <div class="timer__duration-row">
+            <label for="timer-duration" class="label">Duration (min):</label>
+            <input
+              type="number"
+              id="timer-duration"
+              class="input input--sm"
+              min="1"
+              max="120"
+              value="25"
+            />
+          </div>
+
+          <div class="timer__display" id="timer-display">25:00</div>
+
+          <div class="timer__progress">
+            <div class="timer__progress-bar" id="timer-progress-bar"></div>
+          </div>
+
+          <div class="timer__controls">
+            <button id="timer-start" class="btn btn--primary">▶ Start</button>
+            <button id="timer-stop" class="btn btn--secondary" disabled>⏸ Pause</button>
+            <button id="timer-reset" class="btn btn--ghost">↺ Reset</button>
+          </div>
+
+          <p class="timer__status" id="timer-status">Ready to focus!</p>
+        </section>
+
+        <!-- === TO-DO LIST === -->
+        <section class="section card todo-card">
+          <div class="card__header">
+            <h2 class="card__title">📝 To-Do List</h2>
+            <div class="todo__sort">
+              <label for="sort-select" class="label">Sort:</label>
+              <select id="sort-select" class="select">
+                <option value="default">Default</option>
+                <option value="az">A → Z</option>
+                <option value="za">Z → A</option>
+                <option value="done">Done last</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="todo__add-row">
+            <input
+              type="text"
+              id="todo-input"
+              class="input"
+              placeholder="Add a new task..."
+              maxlength="100"
+              autocomplete="off"
+            />
+            <button id="todo-add-btn" class="btn btn--primary">Add</button>
+          </div>
+
+          <p class="todo__error hidden" id="todo-error" role="alert"></p>
+
+          <ul class="todo__list" id="todo-list" aria-label="Task list"></ul>
+
+          <p class="todo__empty hidden" id="todo-empty">No tasks yet. Add one above!</p>
+        </section>
+
+        <!-- === QUICK LINKS === -->
+        <section class="section card links-card">
+          <h2 class="card__title">🔗 Quick Links</h2>
+
+          <div class="links__add-row">
+            <input
+              type="text"
+              id="link-name-input"
+              class="input"
+              placeholder="Name (e.g. Google)"
+              maxlength="30"
+              autocomplete="off"
+            />
+            <input
+              type="url"
+              id="link-url-input"
+              class="input"
+              placeholder="https://..."
+              autocomplete="off"
+            />
+            <button id="link-add-btn" class="btn btn--primary">Add</button>
+          </div>
+
+          <p class="links__error hidden" id="link-error" role="alert"></p>
+
+          <div class="links__grid" id="links-grid"></div>
+
+          <p class="links__empty hidden" id="links-empty">No links yet. Add one above!</p>
+        </section>
+
+      </div><!-- /.dashboard-grid -->
+    </main>
+
+    <script src="js/app.js"></script>
+  </body>
+</html>
